@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            background-color: #fff0f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            transition: background-color 0.5s;
+        }
+
+        .container {
+            text-align: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        #gift-icon {
+            font-size: 150px;
+            transition: transform 0.3s;
+            user-select: none;
+        }
+
+        .message-box {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            transform: scale(0.8);
+        }
+
+        .is-open .message-box {
+            max-height: 500px;
+            opacity: 1;
+            transform: scale(1);
+            margin-top: 20px;
+        }
+
+        .is-open #gift-icon {
+            transform: scale(0.9);
+        }
+
+        h1 { color: #ff4d6d; text-shadow: 2px 2px #fff; }
+        p { color: #590d22; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-container" onclick="toggleSurprise()">
+        <div id="gift-icon">🎁</div>
+        
+        <div class="message-box">
+        <h1>HAPPY BIRTHDAY, PACARKU ❤️</h1>
+        <p>Selamat ulang tahun, Sayang! ❤️</p>
+        <p>Semoga semua yang di inginkan terwujud ya ❤️ </p>
+        <p>Semoga Makin Baik, Sama Makin sayang sama ku ❤️</p>
+        <p>Semoga di berikan umur panjang & kesehatan selalu sama ALLAH❤️</p>
+        <p>Semoga di berikan Rezeki yang berlimpah ayang ❤️</p>
+        <p>Happy Birthday AYANGKU ❤️</p>
+        <p>❤️ I LOVE YOUUU AYANGG ❤️</p>
+    </div>
+
+    <script>
+        let isOpen = false;
+        let confettiInterval = null;
+
+        function shootConfetti() {
+            confetti({
+                particleCount: 5,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 },
+                colors: ['#ff4d6d', '#ff758f', '#ffb3c1']
+            });
+            confetti({
+                particleCount: 5,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 },
+                colors: ['#ff4d6d', '#ff758f', '#ffb3c1']
+            });
+        }
+
+        function toggleSurprise() {
+            const container = document.getElementById('main-container');
+            const icon = document.getElementById('gift-icon');
+            
+            isOpen = !isOpen;
+
+            if (isOpen) {
+                container.classList.add('is-open');
+                icon.innerHTML = '❤️';
+                document.body.style.backgroundColor = "#ffccd5";
+
+                
+                confettiInterval = setInterval(shootConfetti, 100);
+                
+            } else {
+                container.classList.remove('is-open');
+                icon.innerHTML = '🎁';
+                document.body.style.backgroundColor = "#fff0f3";
+
+                
+                clearInterval(confettiInterval);
+            }
+        }
+    </script>
+</body>
+</html>
